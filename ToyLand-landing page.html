@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ToyLand.pk - Educational Toys Store</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    overflow-x:hidden;
+    background:#fff8fb;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+    width:100%;
+    padding:18px 8%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+}
+
+.logo{
+    font-size:34px;
+    font-weight:800;
+    color:white;
+}
+
+.logo span{
+    color:#ffe600;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.4s;
+}
+
+.nav-links a:hover{
+    color:#ffe600;
+}
+
+/* =========================
+HERO SLIDER
+========================= */
+
+.hero-slider{
+    width:100%;
+    height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    opacity:0;
+    visibility:hidden;
+    transition:1s ease;
+}
+
+.slide.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.overlay{
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background:linear-gradient(to right,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0.25));
+}
+
+.slide-content{
+    position:absolute;
+    top:50%;
+    left:8%;
+    transform:translateY(-50%);
+    z-index:10;
+    color:white;
+    max-width:650px;
+}
+
+.tag{
+    display:inline-block;
+    background:#ffe600;
+    color:#000;
+    padding:10px 22px;
+    border-radius:40px;
+    font-weight:600;
+    margin-bottom:25px;
+}
+
+.slide-content h1{
+    font-size:72px;
+    line-height:1.1;
+    margin-bottom:25px;
+}
+
+.slide-content p{
+    font-size:20px;
+    line-height:1.8;
+    margin-bottom:35px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.hero-btn1,
+.hero-btn2{
+    padding:16px 38px;
+    border-radius:50px;
+    text-decoration:none;
+    font-size:17px;
+    font-weight:600;
+    transition:0.4s;
+}
+
+.hero-btn1{
+    background:#ff4d94;
+    color:white;
+}
+
+.hero-btn2{
+    background:white;
+    color:#5b2d90;
+}
+
+.hero-btn1:hover,
+.hero-btn2:hover{
+    transform:translateY(-5px);
+}
+
+.hero-btn2:hover{
+    background:#ffe600;
+}
+
+.slider-buttons{
+    position:absolute;
+    width:100%;
+    top:50%;
+    transform:translateY(-50%);
+    display:flex;
+    justify-content:space-between;
+    padding:0 25px;
+    z-index:20;
+}
+
+.slider-buttons button{
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,0.2);
+    color:white;
+    font-size:26px;
+    cursor:pointer;
+    backdrop-filter:blur(10px);
+    transition:0.4s;
+}
+
+.slider-buttons button:hover{
+    background:#ff4d94;
+}
+
+/* =========================
+SECTION TITLE
+========================= */
+
+.section-title{
+    text-align:center;
+    padding:80px 20px 30px;
+}
+
+.section-title h2{
+    font-size:50px;
+    color:#5b2d90;
+    margin-bottom:15px;
+}
+
+.section-title p{
+    color:#666;
+    font-size:18px;
+}
+
+/* =========================
+CATEGORIES
+========================= */
+
+.categories{
+    padding:20px 8% 80px;
+}
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.category-box{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    transition:0.4s;
+}
+
+.category-box:hover{
+    transform:translateY(-10px);
+}
+
+.category-box img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.category-box h3{
+    text-align:center;
+    padding:20px;
+    color:#5b2d90;
+}
+
+/* =========================
+PRODUCTS
+========================= */
+
+.products{
+    padding:20px 6% 80px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-12px);
+}
+
+.card img{
+    width:100%;
+    height:240px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:25px;
+}
+
+.card-content h3{
+    color:#5b2d90;
+    margin-bottom:12px;
+    font-size:24px;
+}
+
+.card-content p{
+    color:#666;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.price{
+    color:#ff4d94;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.buy-btn{
+    width:100%;
+    margin-top:18px;
+    padding:14px;
+    border:none;
+    border-radius:40px;
+    background:linear-gradient(90deg,#ff5fa2,#7f7dff);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+.buy-btn:hover{
+    transform:scale(1.05);
+}
+
+/* =========================
+FEATURES
+========================= */
+
+.features{
+    padding:80px 8%;
+    background:linear-gradient(to right,#fff0f6,#eef7ff);
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.feature-box{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    transition:0.4s;
+}
+
+.feature-box:hover{
+    transform:translateY(-10px);
+}
+
+.feature-box i{
+    font-size:55px;
+    color:#ff4d94;
+    margin-bottom:20px;
+}
+
+.feature-box h3{
+    color:#5b2d90;
+    margin-bottom:15px;
+}
+
+/* =========================
+TESTIMONIALS
+========================= */
+
+.testimonials{
+    padding:80px 8%;
+}
+
+.testimonial-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.testimonial-box{
+    background:white;
+    padding:35px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.testimonial-box img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    margin-bottom:20px;
+}
+
+.testimonial-box h3{
+    color:#5b2d90;
+    margin-bottom:15px;
+}
+
+/* =========================
+NEWSLETTER
+========================= */
+
+.newsletter{
+    padding:90px 8%;
+    text-align:center;
+    background:linear-gradient(90deg,#ff5fa2,#7f7dff);
+    color:white;
+}
+
+.newsletter h2{
+    font-size:48px;
+    margin-bottom:20px;
+}
+
+.newsletter p{
+    margin-bottom:30px;
+}
+
+.newsletter-form{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.newsletter-form input{
+    width:350px;
+    padding:16px;
+    border:none;
+    border-radius:40px;
+}
+
+.newsletter-form button{
+    padding:16px 35px;
+    border:none;
+    border-radius:40px;
+    background:#ffe600;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =========================
+CONTACT
+========================= */
+
+.contact{
+    padding:90px 8%;
+}
+
+.contact-wrapper{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.contact-box{
+    background:linear-gradient(135deg,#7f7dff,#ff5fa2);
+    padding:50px;
+    border-radius:30px;
+    color:white;
+}
+
+.contact-box h2{
+    font-size:42px;
+    margin-bottom:25px;
+}
+
+.contact-box p{
+    line-height:1.9;
+    margin-bottom:15px;
+}
+
+.map-box{
+    border-radius:30px;
+    overflow:hidden;
+    min-height:450px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+    background:#4b1f73;
+    color:white;
+    padding:70px 8% 30px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:40px;
+}
+
+.footer-box h3{
+    margin-bottom:20px;
+    color:#ffe600;
+}
+
+.footer-box a{
+    display:block;
+    color:#ddd;
+    text-decoration:none;
+    margin-bottom:12px;
+}
+
+.social-icons{
+    margin-top:20px;
+}
+
+.social-icons i{
+    width:45px;
+    height:45px;
+    line-height:45px;
+    text-align:center;
+    border-radius:50%;
+    background:#ff4d94;
+    margin-right:10px;
+    transition:0.4s;
+}
+
+.social-icons i:hover{
+    background:#ffe600;
+    color:black;
+}
+
+.copyright{
+    text-align:center;
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,0.2);
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:991px){
+
+.nav-links{
+    display:none;
+}
+
+.slide-content h1{
+    font-size:48px;
+}
+
+.contact-wrapper{
+    grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero-slider{
+    height:85vh;
+}
+
+.slide-content{
+    left:5%;
+    max-width:90%;
+}
+
+.slide-content h1{
+    font-size:34px;
+}
+
+.slide-content p{
+    font-size:15px;
+}
+
+.hero-buttons{
+    flex-direction:column;
+}
+
+.hero-btn1,
+.hero-btn2{
+    width:100%;
+    text-align:center;
+}
+
+.section-title h2{
+    font-size:36px;
+}
+
+.newsletter h2{
+    font-size:36px;
+}
+
+.newsletter-form input{
+    width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+NAVBAR
+========================= -->
+
+<nav class="navbar">
+    <div class="logo">Toy<span>Land</span></div>
+
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Products</a>
+        <a href="#">Categories</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+
+<!-- =========================
+HERO SLIDER
+========================= -->
+
+<section class="hero-slider">
+
+    <div class="slide active">
+        <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?q=80&w=1600&auto=format&fit=crop">
+        <div class="overlay"></div>
+
+        <div class="slide-content">
+            <span class="tag">Educational Toys For Kids</span>
+
+            <h1>Fun Learning Toys For Smart Kids</h1>
+
+            <p>
+                Discover colorful educational toys that improve creativity,
+                memory and early learning skills.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#" class="hero-btn1">Shop Now</a>
+                <a href="#" class="hero-btn2">Explore Toys</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=1600&auto=format&fit=crop">
+        <div class="overlay"></div>
+
+        <div class="slide-content">
+            <span class="tag">Creative Learning Collection</span>
+
+            <h1>Learning Toys Kids Will Love</h1>
+
+            <p>
+                Interactive educational toys for preschool and child development.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#" class="hero-btn1">Buy Now</a>
+                <a href="#" class="hero-btn2">View Collection</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide">
+        <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1600&auto=format&fit=crop">
+        <div class="overlay"></div>
+
+        <div class="slide-content">
+            <span class="tag">Best Educational Toys</span>
+
+            <h1>Bright Toys For Bright Minds</h1>
+
+            <p>
+                Safe, colorful and affordable toys under Rs.1000 for every child.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#" class="hero-btn1">Get Started</a>
+                <a href="#" class="hero-btn2">Shop Today</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="slider-buttons">
+        <button id="prev">&#10094;</button>
+        <button id="next">&#10095;</button>
+    </div>
+
+</section>
+
+<!-- =========================
+CATEGORIES
+========================= -->
+
+<div class="section-title">
+    <h2>Popular Categories</h2>
+    <p>Educational toys loved by kids</p>
+</div>
+
+<section class="categories">
+
+<div class="category-grid">
+
+<div class="category-box">
+<img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?q=80&w=1000&auto=format&fit=crop">
+<h3>Learning Toys</h3>
+</div>
+
+<div class="category-box">
+<img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?q=80&w=1000&auto=format&fit=crop">
+<h3>Puzzle Games</h3>
+</div>
+
+<div class="category-box">
+<img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1000&auto=format&fit=crop">
+<h3>Creative Art</h3>
+</div>
+
+<div class="category-box">
+<img src="https://images.unsplash.com/photo-1618842676088-c4d48a6a7c9d?q=80&w=1000&auto=format&fit=crop">
+<h3>STEM Toys</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+PRODUCTS
+========================= -->
+
+<div class="section-title">
+    <h2>Educational Toys Collection</h2>
+    <p>28 amazing toys under Rs.1000</p>
+</div>
+
+<section class="products" id="products">
+
+<!-- PRODUCT CARDS -->
+
+<script>
+
+const products = [
+["Alphabet Blocks","Improve spelling and letter recognition.","799"],
+["Math Puzzle","Fun toy for math practice.","899"],
+["Animal Flash Cards","Memory and learning cards.","450"],
+["Building Blocks","Creative building toy set.","950"],
+["Drawing Board","Creative sketching toy.","850"],
+["Shape Sorter","Color and shape learning.","650"],
+["Counting Beads","Basic mathematics learning.","550"],
+["Brain Puzzle","Improve problem solving.","699"],
+["Story Books","Reading and imagination.","799"],
+["Matching Cards","Memory matching game.","499"],
+["Number Board","Wooden learning board.","899"],
+["Science Kit","Fun science experiments.","950"],
+["Educational Cube","Learning numbers and shapes.","799"],
+["Kids Piano","Creative musical toy.","999"],
+["Color Kit","Color recognition toy.","599"],
+["Mini Robot","Interactive robot toy.","899"],
+["Kids Xylophone","Musical learning toy.","750"],
+["Wooden Puzzle","Improve concentration.","499"],
+["ABC Learning Pad","Electronic educational toy.","999"],
+["Magnetic Letters","Vocabulary learning toy.","650"],
+["Kids Drum","Fun musical drum toy.","799"],
+["Learning Laptop","Educational mini laptop.","999"],
+["Kids Domino","Classic educational game.","699"],
+["Learning Clock","Teach time concepts.","599"],
+["Kids Calculator","Basic arithmetic toy.","850"],
+["Coloring Set","Creative coloring activities.","699"],
+["Kids Microscope","Science exploration toy.","999"],
+["Learning Tablet","Educational games toy.","950"]
+];
+
+document.write(products.map((p,i)=>`
+<div class="card">
+<img src="https://picsum.photos/500/400?random=${i+1}">
+<div class="card-content">
+<h3>${p[0]}</h3>
+<p>${p[1]}</p>
+<div class="price">Rs. ${p[2]}</div>
+<button class="buy-btn">Add To Cart</button>
+</div>
+</div>
+`).join(''));
+
+</script>
+
+</section>
+
+<!-- =========================
+FEATURES
+========================= -->
+
+<section class="features">
+
+<div class="section-title">
+<h2>Why Choose ToyLand?</h2>
+<p>Fun and safe learning toys for children</p>
+</div>
+
+<div class="feature-grid">
+
+<div class="feature-box">
+<i class="fa-solid fa-puzzle-piece"></i>
+<h3>Creative Learning</h3>
+<p>Improve creativity and imagination skills.</p>
+</div>
+
+<div class="feature-box">
+<i class="fa-solid fa-child-reaching"></i>
+<h3>Safe For Kids</h3>
+<p>Child-friendly and colorful toy designs.</p>
+</div>
+
+<div class="feature-box">
+<i class="fa-solid fa-graduation-cap"></i>
+<h3>Educational Fun</h3>
+<p>Perfect for preschool learning activities.</p>
+</div>
+
+<div class="feature-box">
+<i class="fa-solid fa-truck"></i>
+<h3>Fast Delivery</h3>
+<p>Quick shipping all across Pakistan.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+TESTIMONIALS
+========================= -->
+
+<section class="testimonials">
+
+<div class="section-title">
+<h2>Happy Parents Reviews</h2>
+<p>Trusted by parents all across Pakistan</p>
+</div>
+
+<div class="testimonial-grid">
+
+<div class="testimonial-box">
+<img src="https://randomuser.me/api/portraits/women/45.jpg">
+<h3>Sarah Khan</h3>
+<p>“Amazing educational toys for my daughter.”</p>
+</div>
+
+<div class="testimonial-box">
+<img src="https://randomuser.me/api/portraits/men/52.jpg">
+<h3>Ahmed Ali</h3>
+<p>“Very colorful toys and excellent quality.”</p>
+</div>
+
+<div class="testimonial-box">
+<img src="https://randomuser.me/api/portraits/women/22.jpg">
+<h3>Ayesha Noor</h3>
+<p>“Perfect toys for preschool learning.”</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+NEWSLETTER
+========================= -->
+
+<section class="newsletter">
+
+<h2>Get Special Toy Offers</h2>
+
+<p>Subscribe to receive latest educational toy updates.</p>
+
+<div class="newsletter-form">
+<input type="email" placeholder="Enter Your Email">
+<button>Subscribe</button>
+</div>
+
+</section>
+
+<!-- =========================
+CONTACT
+========================= -->
+
+<section class="contact">
+
+<div class="contact-wrapper">
+
+<div class="contact-box">
+
+<h2>Contact Us</h2>
+
+<p>
+<strong>Address:</strong><br>
+Apartment No.A-02, Second Floor, Plot No, 76-77,<br>
+Khawaja Heights VII,Phase-7, Bahria Springs,<br>
+Bahria Town, Rawalpindi.
+</p>
+
+<p><strong>Phone:</strong> 92-333-5555555</p>
+
+<p><strong>Website:</strong> toyland.pk</p>
+
+<p><strong>Email:</strong> info@toylan.pk</p>
+
+</div>
+
+<div class="map-box">
+
+<iframe
+src="https://www.google.com/maps?q=Bahria%20Town%20Rawalpindi&output=embed"
+width="100%"
+height="100%"
+style="border:0;"
+allowfullscreen=""
+loading="lazy">
+</iframe>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div class="footer-box">
+<h3>ToyLand</h3>
+
+<p>
+Educational toys store for smart kids with colorful
+learning products all across Pakistan.
+</p>
+
+<div class="social-icons">
+<i class="fab fa-facebook-f"></i>
+<i class="fab fa-instagram"></i>
+<i class="fab fa-youtube"></i>
+<i class="fab fa-tiktok"></i>
+</div>
+
+</div>
+
+<div class="footer-box">
+<h3>Quick Links</h3>
+<a href="#">Home</a>
+<a href="#">Products</a>
+<a href="#">Categories</a>
+<a href="#">About Us</a>
+<a href="#">Contact</a>
+</div>
+
+<div class="footer-box">
+<h3>Customer Support</h3>
+<a href="#">FAQs</a>
+<a href="#">Shipping Policy</a>
+<a href="#">Privacy Policy</a>
+<a href="#">Refund Policy</a>
+<a href="#">Terms & Conditions</a>
+</div>
+
+<div class="footer-box">
+<h3>Contact Info</h3>
+<a href="#">Rawalpindi, Pakistan</a>
+<a href="#">92-333-5555555</a>
+<a href="#">info@toylan.pk</a>
+<a href="#">toyland.pk</a>
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 ToyLand.pk | All Rights Reserved
+</div>
+
+</footer>
+
+<!-- =========================
+JAVASCRIPT
+========================= -->
+
+<script>
+
+/* HERO SLIDER */
+
+const slides = document.querySelectorAll(".slide");
+const nextBtn = document.getElementById("next");
+const prevBtn = document.getElementById("prev");
+
+let current = 0;
+
+function showSlide(index){
+
+slides.forEach(slide=>{
+slide.classList.remove("active");
+});
+
+slides[index].classList.add("active");
+
+}
+
+nextBtn.addEventListener("click",()=>{
+
+current++;
+
+if(current >= slides.length){
+current = 0;
+}
+
+showSlide(current);
+
+});
+
+prevBtn.addEventListener("click",()=>{
+
+current--;
+
+if(current < 0){
+current = slides.length - 1;
+}
+
+showSlide(current);
+
+});
+
+/* AUTO SLIDE */
+
+setInterval(()=>{
+
+current++;
+
+if(current >= slides.length){
+current = 0;
+}
+
+showSlide(current);
+
+},5000);
+
+/* PRODUCT ANIMATION */
+
+const cards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll",()=>{
+
+cards.forEach(card=>{
+
+const cardTop = card.getBoundingClientRect().top;
+
+if(cardTop < window.innerHeight - 100){
+
+card.style.opacity = "1";
+card.style.transform = "translateY(0)";
+
+}
+
+});
+
+});
+
+cards.forEach(card=>{
+
+card.style.opacity = "0";
+card.style.transform = "translateY(50px)";
+card.style.transition = "0.7s";
+
+});
+
+</script>
+
+</body>
+</html>
